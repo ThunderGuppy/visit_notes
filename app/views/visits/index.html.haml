@@ -1,24 +1,27 @@
-%h1 Listing visits
+%h1 Visit Log
 
-%table
+= link_to 'New Visit', new_visit_path
+
+%br
+
+%table.table
   %thead
     %tr
+      %th
       %th
       %th
       %th
 
   %tbody
     - @visits.order(:date, :asc).reverse.each do |visit|
-      .columns
-        .column.is-narrow= link_to visit.date, visit
-        .column= truncate(visit.notes, :length => 80)
-        .column.is-narrow
+      %tr
+        %td= link_to visit.date, visit
+        %td= truncate(visit.notes, :length => 80)
+        %td
           = link_to edit_visit_path(visit) do
             = fa_icon "pencil"
-        .column.is-narrow
+        %td
           = link_to visit, method: :delete, data: { confirm: 'Are you sure?' } do
             = fa_icon 'trash'
 
 %br
-
-= link_to 'New Visit', new_visit_path
