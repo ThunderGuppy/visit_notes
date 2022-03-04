@@ -73,6 +73,8 @@ GEM
     bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bulma-rails (0.9.3)
+      sassc (~> 2.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -91,6 +93,7 @@ GEM
     digest (3.1.0)
     erubi (1.10.0)
     erubis (2.7.0)
+    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     haml (5.2.2)
@@ -128,6 +131,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.4.5)
     net-imap (0.2.3)
@@ -146,6 +150,9 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     public_suffix (4.0.6)
@@ -189,6 +196,8 @@ GEM
     ruby_parser (3.18.1)
       sexp_processor (~> 4.16)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -237,6 +246,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootsnap
+  bulma-rails (~> 0.9.3)
   capybara
   debug
   haml-rails (~> 2.0)

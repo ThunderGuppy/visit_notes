@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 gem "haml-rails", "~> 2.0"
 gem "awesome_print"
 
+gem "bulma-rails", "~> 0.9.3"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
