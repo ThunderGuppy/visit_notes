@@ -5,6 +5,10 @@
       %ul
         - @visit.errors.full_messages.each do |message|
           %li= message
-
+  %p
+  =f.date_field :date
+  %p
+  =f.text_area :notes
+  %p
   .actions
     = f.submit 'Save'

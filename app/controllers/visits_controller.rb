@@ -65,6 +65,9 @@ class VisitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visit_params
-      params.fetch(:visit, {})
+      params.fetch(:visit, {}).permit(
+      :date,
+      :notes
+      )
     end
 end
