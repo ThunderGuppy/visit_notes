@@ -12,8 +12,12 @@
       .columns
         .column.is-narrow= link_to visit.date, visit
         .column= truncate(visit.notes, :length => 80)
-        .column.is-narrow= link_to 'Edit', edit_visit_path(visit)
-        .column.is-narrow= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' }
+        .column.is-narrow
+          = link_to edit_visit_path(visit) do
+            = fa_icon "pencil"
+        .column.is-narrow
+          = link_to visit, method: :delete, data: { confirm: 'Are you sure?' } do
+            = fa_icon 'trash'
 
 %br
 
