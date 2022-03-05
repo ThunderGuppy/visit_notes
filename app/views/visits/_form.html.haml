@@ -12,10 +12,22 @@
   %p
   %h5
     Trials:
-  %div{id: 'fieldsetContainer'}
-    = f.fields_for :trials do |b|
-      %fieldset{id: 0}
-        = b.text_field :topic
+  %table.table
+    %thead
+      %tr
+        %th Topic
+        %th Success?
+        %th Prompted?
+        %th Notes
+    %tbody
+      %div{id: 'fieldsetContainer'}
+        = f.fields_for :trials do |b|
+          %tr
+            %fieldset{id: 0}
+              %td= b.text_field :topic
+              %td= b.check_box :success
+              %td= b.check_box :prompted
+              %td= b.text_area :note
 
   .button{:id => 'addTrial', onclick: "addTrial();"}
     = fa_icon "plus"

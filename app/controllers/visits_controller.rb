@@ -59,20 +59,24 @@ class VisitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_visit
-      @visit = Visit.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def visit_params
-      params.fetch(:visit, {}).permit(
+  # Use callbacks to share common setup or constraints between actions.
+  def set_visit
+    @visit = Visit.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def visit_params
+    params.fetch(:visit, {}).permit(
       :date,
       :notes,
-      trials_attributes:[
+      trials_attributes: [
         :topic,
-        :id
+        :id,
+        :success,
+        :prompted,
+        :note
       ]
-      )
-    end
+    )
+  end
 end

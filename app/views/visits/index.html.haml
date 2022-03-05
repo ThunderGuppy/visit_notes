@@ -7,8 +7,10 @@
 %table.table
   %thead
     %tr
-      %th
-      %th
+      %th Date
+      %th Topics
+      %th Successes
+      %th Notes
       %th
       %th
 
@@ -16,12 +18,14 @@
     - @visits.order(:date, :asc).reverse.each do |visit|
       %tr
         %td= link_to visit.date, visit
+        %td= truncate(visit.trials.collect(&:topic).join(', '), :length => 80)
+        %td= "#{visit.trials.where(success: true).count}/#{visit.trials.count}"
         %td= truncate(visit.notes, :length => 80)
         %td
           = link_to edit_visit_path(visit) do
             = fa_icon "pencil"
         %td
-          = link_to visit, method: :delete, data: { confirm: 'Are you sure?' } do
+          = button_to visit_path(visit), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } do
             = fa_icon 'trash'
 
 %br
