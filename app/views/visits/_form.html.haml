@@ -10,5 +10,34 @@
   %p
   =f.text_area :notes
   %p
+  %h5
+    Trials:
+  %div{id: 'fieldsetContainer'}
+    = f.fields_for :trials do |b|
+      %fieldset{id: 0}
+        = b.text_field :topic
+
+  .button{:id => 'addTrial', onclick: "addTrial();"}
+    = fa_icon "plus"
+    Trial
+
+  %p
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', {class: 'button'}
+
+
+:javascript
+
+    const createButton = document.getElementById("addTrial");
+    createButton.addEventListener("click", () => {
+
+        const lastId = document.querySelector('#fieldsetContainer').lastElementChild.value;
+
+        const newId = parseInt(lastId, 10) + 1;
+
+        const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g,newId);
+
+        document.querySelector("#fieldsetContainer").insertAdjacentHTML(
+        "beforeend", newFieldset
+        );
+    });

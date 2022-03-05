@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_04_211151) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_05_184426) do
   create_table "notes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_04_211151) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "visit_id"
+    t.index ["visit_id"], name: "index_trials_on_visit_id"
   end
 
   create_table "visits", force: :cascade do |t|

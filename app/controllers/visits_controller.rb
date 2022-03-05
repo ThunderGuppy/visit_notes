@@ -13,6 +13,7 @@ class VisitsController < ApplicationController
   # GET /visits/new
   def new
     @visit = Visit.new
+    @visit.trials.build
   end
 
   # GET /visits/1/edit
@@ -25,8 +26,8 @@ class VisitsController < ApplicationController
 
     respond_to do |format|
       if @visit.save
-        format.html { redirect_to visit_url(@visit), notice: "Visit was successfully created." }
-        format.json { render :show, status: :created, location: @visit }
+        format.html { redirect_to visits_url(@visit), notice: "Visit was successfully created." }
+        format.json { render :index, status: :created, location: @visit }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
@@ -38,8 +39,8 @@ class VisitsController < ApplicationController
   def update
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to visit_url(@visit), notice: "Visit was successfully updated." }
-        format.json { render :show, status: :ok, location: @visit }
+        format.html { redirect_to visits_url(@visit), notice: "Visit was successfully updated." }
+        format.json { render :index, status: :ok, location: @visit }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
@@ -67,7 +68,11 @@ class VisitsController < ApplicationController
     def visit_params
       params.fetch(:visit, {}).permit(
       :date,
-      :notes
+      :notes,
+      trials_attributes:[
+        :topic,
+        :id
+      ]
       )
     end
 end
