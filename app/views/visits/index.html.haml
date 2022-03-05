@@ -19,7 +19,7 @@
       %tr
         %td= link_to visit.date, visit
         %td= truncate(visit.trials.collect(&:topic).join(', '), :length => 80)
-        %td= "#{visit.trials.where(success: true).count}/#{visit.trials.count}"
+        %td= "#{visit.trials.where(success: true).count}/#{visit.trials.count} (#{number_to_percentage( (visit.trials.where(success: true).count.to_f/visit.trials.count)*100, precision: 0) })"
         %td= truncate(visit.notes, :length => 80)
         %td
           = link_to edit_visit_path(visit), class: 'button is-small' do
