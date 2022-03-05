@@ -7,31 +7,36 @@
           %li= message
   %p
   =f.date_field :date
-  %p
-  =f.text_area :notes
+
+  %hr
+
   %p
   %h5
     Trials:
-  %table.table
-    %thead
-      %tr
-        %th Topic
-        %th Success?
-        %th Prompted?
-        %th Notes
-    %tbody
-      %div{id: 'fieldsetContainer'}
-        = f.fields_for :trials do |b|
-          %tr
-            %fieldset{id: 0}
-              %td= b.text_field :topic
-              %td= b.check_box :success
-              %td= b.check_box :prompted
-              %td= b.text_area :note
+  .columns
+    .column Topic
+    .column Success?
+    .column Prompted?
+    .column Notes
+
+  %div{id: 'fieldsetContainer'}
+    = f.fields_for :trials do |b|
+      %fieldset{id: 0, class: 'trial_container'}
+        .columns
+          .column= b.text_field :topic
+          .column= b.check_box :success
+          .column= b.check_box :prompted
+          .column= b.text_area :note
 
   .button{:id => 'addTrial', onclick: "addTrial();"}
     = fa_icon "plus"
     Trial
+
+  %hr
+
+  %p
+  Notes:
+  =f.text_area :notes, class: 'textarea'
 
   %p
   .actions
@@ -43,7 +48,7 @@
     const createButton = document.getElementById("addTrial");
     createButton.addEventListener("click", () => {
 
-        const lastId = document.querySelector('#fieldsetContainer').lastElementChild.value;
+        var lastId = document.querySelectorAll('.trial_container').length;
 
         const newId = parseInt(lastId, 10) + 1;
 
