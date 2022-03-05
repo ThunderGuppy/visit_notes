@@ -1,6 +1,34 @@
 %p#notice= notice
 
+%h1
+  = @visit.date
+
+%p
+  %h5
+    Trials:
+  %table.table
+    %thead
+      %th Topic
+      %th Success?
+      %th Prompted?
+      %th Notes
+
+    %tbody
+      - @visit.trials.each do |trial|
+        %tr
+          %td= trial.topic
+          %td
+            -if trial.success?
+              = fa_icon "check"
+            -else
+              = fa_icon "times"
+          %td
+            -if trial.prompted?
+              = fa_icon "check"
+            -else
+              = fa_icon "times"
+          %td= trial.note
 
 = link_to 'Edit', edit_visit_path(@visit)
 \|
-= link_to 'Back', visits_path
+= link_to 'Home', visits_path

@@ -11,8 +11,8 @@
       %th Topics
       %th Successes
       %th Notes
-      %th
-      %th
+      %th.is-narrow
+      %th.is-narrow
 
   %tbody
     - @visits.order(:date, :asc).reverse.each do |visit|
@@ -22,10 +22,10 @@
         %td= "#{visit.trials.where(success: true).count}/#{visit.trials.count}"
         %td= truncate(visit.notes, :length => 80)
         %td
-          = link_to edit_visit_path(visit) do
+          = link_to edit_visit_path(visit), class: 'button is-small' do
             = fa_icon "pencil"
         %td
-          = button_to visit_path(visit), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } do
+          = button_to visit_path(visit), method: :delete, class: 'button is-small', form: { data: { turbo_confirm: 'Are you sure?' } } do
             = fa_icon 'trash'
 
 %br
